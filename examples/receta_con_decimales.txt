@@ -1,0 +1,17 @@
+RECETA "Torta con Medidas Variadas"
+INGREDIENTES:
+harina 2.5 kg
+azucar 1/2 kg
+leche 0.75 l
+huevo 3 u
+PASOS:
+1. Mezclar ingredientes secos
+2. Agregar
+3. Batir
+Tiempo: 60 min
+Porciones: 12
+Calorias: 200 Kcal
+Categorias: [Postre]
+Dificultad: MEDIA
+Obs: "Ejemplo con decimales y fracciones"
+Recetas relacionadas: "Torta simple"

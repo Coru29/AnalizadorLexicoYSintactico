@@ -18,7 +18,7 @@ CUP_RUNTIME_JAR = $(LIB_DIR)/java-cup-11b-runtime.jar
 # Classpath
 CLASSPATH = $(BUILD_DIR):$(CUP_RUNTIME_JAR)
 
-.PHONY: all clean lexer parser compile run run-brownies run-guiso run-ensalada test-all
+.PHONY: all clean lexer parser compile run run-brownies run-guiso run-ensalada run-decimales test-all
 
 all: compile
 
@@ -54,6 +54,10 @@ run-guiso: compile
 run-ensalada: compile
 	@echo "Ejecutando ejemplo de ensalada..."
 	java -cp $(CLASSPATH) Main examples/ensalada_basica.txt
+
+run-decimales: compile
+	@echo "Ejecutando ejemplo con decimales y fracciones..."
+	java -cp $(CLASSPATH) Main examples/receta_con_decimales.txt
 
 # Ejecutar todos los ejemplos
 test-all: compile

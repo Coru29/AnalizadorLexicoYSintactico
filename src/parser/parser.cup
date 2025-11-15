@@ -57,8 +57,11 @@ receta ::= nombre_receta NUEVA_LINEA
            {: System.out.println("Receta procesada correctamente"); :}
          ;
 
-nombre_receta ::= RECETA CADENA
-                {: System.out.println("Nombre de receta encontrado"); :}
+nombre_receta ::= RECETA CADENA:nombre
+                {: System.out.println("📝 NOMBRE DE RECETA TOKENIZADO:");
+                   System.out.println("   └─ Palabra clave: 'RECETA' (Token: RECETA)");
+                   System.out.println("   └─ Nombre: " + nombre + " (Token: CADENA)");
+                :}
               ;
 
 seccion_ingredientes ::= INGREDIENTES DOS_PUNTOS NUEVA_LINEA
@@ -69,20 +72,33 @@ lista_ingredientes ::= ingrediente
                      | lista_ingredientes ingrediente
                      ;
 
-ingrediente ::= PALABRA cantidad unidad NUEVA_LINEA
-              {: System.out.println("Ingrediente encontrado"); :}
+ingrediente ::= PALABRA:nombre cantidad:cant unidad:u NUEVA_LINEA
+              {: System.out.println("🥘 INGREDIENTE TOKENIZADO:");
+                 System.out.println("   └─ Nombre: '" + nombre + "' (Token: PALABRA)");
+                 System.out.println("   └─ Cantidad: '" + cant + "' (Token: " + cant.getClass().getSimpleName().toUpperCase() + ")");
+                 System.out.println("   └─ Unidad: '" + u + "' (Token: UNIDAD)");
+                 System.out.println("   └─ Resultado: " + nombre + " " + cant + " " + u);
+              :}
             ;
 
-cantidad ::= NUMERO
-           | DECIMAL
-           | FRACCION
+cantidad ::= NUMERO:n
+           {: RESULT = n; :}
+           | DECIMAL:d
+           {: RESULT = d; :}
+           | FRACCION:f
+           {: RESULT = f; :}
            ;
 
 unidad ::= GRAMOS
+         {: RESULT = "g"; :}
          | KILOS
+         {: RESULT = "kg"; :}
          | LITROS
+         {: RESULT = "l"; :}
          | MILILITROS
+         {: RESULT = "ml"; :}
          | UNIDADES
+         {: RESULT = "u"; :}
          ;
 
 seccion_pasos ::= PASOS DOS_PUNTOS NUEVA_LINEA
@@ -93,12 +109,27 @@ lista_pasos ::= paso
               | lista_pasos paso
               ;
 
-paso ::= NUMERO PUNTO PALABRA NUEVA_LINEA
-       {: System.out.println("Paso encontrado"); :}
-       | NUMERO PUNTO PALABRA PALABRA NUEVA_LINEA
-       {: System.out.println("Paso encontrado"); :}
-       | NUMERO PUNTO PALABRA PALABRA PALABRA NUEVA_LINEA
-       {: System.out.println("Paso encontrado"); :}
+paso ::= NUMERO:num PUNTO PALABRA:accion NUEVA_LINEA
+       {: System.out.println("👨‍🍳 PASO TOKENIZADO:");
+          System.out.println("   └─ Número: '" + num + "' (Token: NUMERO)");
+          System.out.println("   └─ Separador: '.' (Token: PUNTO)");
+          System.out.println("   └─ Acción: '" + accion + "' (Token: PALABRA)");
+          System.out.println("   └─ Resultado: Paso " + num + ": " + accion);
+       :}
+       | NUMERO:num PUNTO PALABRA:accion1 PALABRA:accion2 NUEVA_LINEA
+       {: System.out.println("👨‍🍳 PASO TOKENIZADO:");
+          System.out.println("   └─ Número: '" + num + "' (Token: NUMERO)");
+          System.out.println("   └─ Separador: '.' (Token: PUNTO)");
+          System.out.println("   └─ Acción: '" + accion1 + " " + accion2 + "' (Tokens: PALABRA + PALABRA)");
+          System.out.println("   └─ Resultado: Paso " + num + ": " + accion1 + " " + accion2);
+       :}
+       | NUMERO:num PUNTO PALABRA:accion1 PALABRA:accion2 PALABRA:accion3 NUEVA_LINEA
+       {: System.out.println("👨‍🍳 PASO TOKENIZADO:");
+          System.out.println("   └─ Número: '" + num + "' (Token: NUMERO)");
+          System.out.println("   └─ Separador: '.' (Token: PUNTO)");
+          System.out.println("   └─ Acción: '" + accion1 + " " + accion2 + " " + accion3 + "' (Tokens: PALABRA + PALABRA + PALABRA)");
+          System.out.println("   └─ Resultado: Paso " + num + ": " + accion1 + " " + accion2 + " " + accion3);
+       :}
      ;
 
 info_adicional ::= tiempo porciones calorias

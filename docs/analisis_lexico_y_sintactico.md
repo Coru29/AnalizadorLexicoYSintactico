@@ -99,28 +99,28 @@ Basado en reglas : Usa gramáticas libres de contexto
 ### Comparación Detallada
 
 ```
-Aspecto Análisis Léxico Análisis Sintáctico
+Aspecto | Análisis Léxico | Análisis Sintáctico
 ```
 ```
-Entrada Secuencia de caracteres Secuencia de tokens
+Entrada | Secuencia de caracteres | Secuencia de tokens
 ```
 ```
-Salida Secuencia de tokens Árbol sintáctico/Estructura
+Salida | Secuencia de tokens | Árbol sintáctico/Estructura
 ```
 ```
-Fundamento Teórico Expresiones regulares Gramáticas libres de contexto
+Fundamento | Teórico Expresiones regulares | Gramáticas libres de contexto
 ```
 ```
-Autómata Finito Determinista (AFD) De pila (Push-down)
+Autómata | Finito Determinista (AFD) | De pila (Push-down)
 ```
 ```
-Complejidad O(n) - Lineal O(n³) - Cúbica (en general)
+Complejidad | O(n) - Lineal O(n³) - | Cúbica (en general)
 ```
 ```
-Memoria Sin memoria (estado actual) Con memoria (pila)
+Memoria | Sin memoria (estado actual) | Con memoria (pila)
 ```
 ```
-Errores Caracteres ilegales Secuencias inválidas de tokens
+Errores | Caracteres ilegales | Secuencias inválidas de tokens
 ```
 
 ### Tipos de Errores
