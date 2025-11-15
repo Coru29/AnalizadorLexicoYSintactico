@@ -1,0 +1,23 @@
+RECETA "Guiso de Lentejas"
+INGREDIENTES:
+chorizo 500 g
+lentejas 500 g
+tomate 300 ml
+cebolla 500 g
+morron 2 u
+sal 1 u
+pimienta 1 u
+PASOS:
+1. Calentar
+2. Hervir
+3. Cocinar
+4. Servir
+Tiempo: 75 min
+Porciones: 20
+Calorias: 150 Kcal
+Categorias: [Principal]
+Dificultad: ***
+Obs: "Ideal para días fríos. Muy nutritivo."
+Recetas relacionadas: "Guiso de porotos", "Estofado"
+Proteinas=Alto
+Costo=Medio

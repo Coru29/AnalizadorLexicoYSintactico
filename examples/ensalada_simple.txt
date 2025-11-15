@@ -1,0 +1,21 @@
+RECETA "Ensalada Verde"
+INGREDIENTES:
+lechuga 200 g
+tomate 150 g
+aceite 50 ml
+vinagre 20 ml
+sal 1 u
+PASOS:
+1. Lavar
+2. Cortar
+3. Mezclar
+4. Aliñar
+Tiempo: 15 min
+Porciones: 4
+Calorias: 80 Kcal
+Categorias: [Entrada]
+Dificultad: FACIL
+Obs: "Muy saludable y refrescante"
+Recetas relacionadas: "Ensalada mixta"
+Vegetariano=Si
+Calorias=Bajo

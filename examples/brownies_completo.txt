@@ -1,0 +1,23 @@
+RECETA "Brownies de Chocolate"
+INGREDIENTES:
+harina 200 g
+azucar 500 g
+manteca 5 u
+aceite 300 ml
+chocolate 100 g
+huevo 3 u
+vainilla 1 u
+PASOS:
+1. Derretir
+2. Agregar
+3. Incorporar
+4. Hornear
+Tiempo: 45 min
+Porciones: 8
+Calorias: 150 Kcal
+Categorias: [Merienda, Postre]
+Dificultad: MEDIA
+Obs: "Ideal para acompañar con helado. Se puede agregar nueces."
+Recetas relacionadas: "Torta blanda chocolate", "Torta micro chocolate"
+Grasas=Alto
+Vegetariano=Si

@@ -1,0 +1,165 @@
+import java.io.*;
+import java_cup.runtime.*;
+
+/* Símbolos terminales */
+terminal RECETA, INGREDIENTES, PASOS, TIEMPO, PORCIONES, CALORIAS;
+terminal CATEGORIAS, DIFICULTAD, ORIGEN, TIPO, OBS, RECETAS, RELACIONADAS;
+terminal GRAMOS, KILOS, LITROS, MILILITROS, UNIDADES, MINUTOS, KCAL;
+terminal DOS_PUNTOS, PUNTO, NUEVA_LINEA, IGUAL, COMA, CORCHETE_IZQ, CORCHETE_DER, ASTERISCO;
+terminal NUMERO;
+terminal DECIMAL;
+terminal FRACCION, CADENA, PALABRA;
+
+/* Símbolos no terminales */
+non terminal recetario;
+non terminal receta;
+non terminal nombre_receta;
+non terminal seccion_ingredientes;
+non terminal lista_ingredientes;
+non terminal ingrediente;
+non terminal cantidad;
+non terminal unidad;
+non terminal seccion_pasos;
+non terminal lista_pasos;
+non terminal paso;
+non terminal info_adicional;
+non terminal tiempo;
+non terminal porciones;
+non terminal calorias;
+non terminal categorias;
+non terminal lista_categorias;
+non terminal categoria;
+non terminal dificultad;
+non terminal origen;
+non terminal tipo;
+non terminal observaciones;
+non terminal recetas_relacionadas;
+non terminal lista_recetas;
+non terminal info_extra;
+
+/* Símbolo inicial */
+start with recetario;
+
+/* Reglas de producción */
+recetario ::= receta
+           | recetario receta
+           ;
+
+receta ::= nombre_receta NUEVA_LINEA
+           seccion_ingredientes
+           seccion_pasos
+           info_adicional
+           categorias
+           dificultad
+           observaciones
+           recetas_relacionadas
+           info_extra
+           {: System.out.println("Receta procesada correctamente"); :}
+         ;
+
+nombre_receta ::= RECETA CADENA
+                {: System.out.println("Nombre de receta encontrado"); :}
+              ;
+
+seccion_ingredientes ::= INGREDIENTES DOS_PUNTOS NUEVA_LINEA
+                        lista_ingredientes
+                      ;
+
+lista_ingredientes ::= ingrediente
+                     | lista_ingredientes ingrediente
+                     ;
+
+ingrediente ::= PALABRA cantidad unidad NUEVA_LINEA
+              {: System.out.println("Ingrediente encontrado"); :}
+            ;
+
+cantidad ::= NUMERO
+           | DECIMAL
+           | FRACCION
+           ;
+
+unidad ::= GRAMOS
+         | KILOS
+         | LITROS
+         | MILILITROS
+         | UNIDADES
+         ;
+
+seccion_pasos ::= PASOS DOS_PUNTOS NUEVA_LINEA
+                 lista_pasos
+               ;
+
+lista_pasos ::= paso
+              | lista_pasos paso
+              ;
+
+paso ::= NUMERO PUNTO PALABRA NUEVA_LINEA
+       {: System.out.println("Paso encontrado"); :}
+       | NUMERO PUNTO PALABRA PALABRA NUEVA_LINEA
+       {: System.out.println("Paso encontrado"); :}
+       | NUMERO PUNTO PALABRA PALABRA PALABRA NUEVA_LINEA
+       {: System.out.println("Paso encontrado"); :}
+     ;
+
+info_adicional ::= tiempo porciones calorias
+                 ;
+
+tiempo ::= TIEMPO DOS_PUNTOS NUMERO MINUTOS NUEVA_LINEA
+         {: System.out.println("Tiempo encontrado"); :}
+         ;
+
+porciones ::= PORCIONES DOS_PUNTOS NUMERO NUEVA_LINEA
+            {: System.out.println("Porciones encontradas"); :}
+            ;
+
+calorias ::= CALORIAS DOS_PUNTOS NUMERO KCAL NUEVA_LINEA
+           {: System.out.println("Calorías encontradas"); :}
+           ;
+
+categorias ::= CATEGORIAS DOS_PUNTOS CORCHETE_IZQ lista_categorias CORCHETE_DER NUEVA_LINEA
+             {: System.out.println("Categorías encontradas"); :}
+             ;
+
+lista_categorias ::= categoria
+                   | lista_categorias COMA categoria
+                   ;
+
+categoria ::= PALABRA
+            ;
+
+dificultad ::= DIFICULTAD DOS_PUNTOS PALABRA NUEVA_LINEA
+             {: System.out.println("Dificultad encontrada"); :}
+             | DIFICULTAD DOS_PUNTOS ASTERISCO NUEVA_LINEA
+             {: System.out.println("Dificultad con estrellas encontrada"); :}
+             | DIFICULTAD DOS_PUNTOS ASTERISCO ASTERISCO NUEVA_LINEA
+             {: System.out.println("Dificultad con estrellas encontrada"); :}
+             | DIFICULTAD DOS_PUNTOS ASTERISCO ASTERISCO ASTERISCO NUEVA_LINEA
+             {: System.out.println("Dificultad con estrellas encontrada"); :}
+             ;
+
+origen ::= ORIGEN DOS_PUNTOS PALABRA NUEVA_LINEA
+         {: System.out.println("Origen encontrado"); :}
+         | /* vacío - campo opcional */
+         ;
+
+tipo ::= TIPO DOS_PUNTOS PALABRA NUEVA_LINEA
+       {: System.out.println("Tipo encontrado"); :}
+       | /* vacío - campo opcional */
+       ;
+
+observaciones ::= OBS DOS_PUNTOS CADENA NUEVA_LINEA
+                {: System.out.println("Observaciones encontradas"); :}
+                ;
+
+recetas_relacionadas ::= RECETAS RELACIONADAS DOS_PUNTOS lista_recetas NUEVA_LINEA
+                       {: System.out.println("Recetas relacionadas encontradas"); :}
+                       ;
+
+lista_recetas ::= CADENA
+                | lista_recetas COMA CADENA
+                ;
+
+info_extra ::= /* vacío - sin información adicional */
+             | info_extra PALABRA IGUAL PALABRA NUEVA_LINEA
+             {: System.out.println("Información adicional encontrada"); :}
+             ;

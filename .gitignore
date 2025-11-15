@@ -1,0 +1,29 @@
+# Archivos compilados y generados
+build/
+*.class
+
+# Archivos temporales de JFlex
+*.java~
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db
+
+# IDEs
+.vscode/
+.idea/
+*.iml
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+
+# Archivos temporales
+*.tmp
+*.temp
+
+# Backup files
+*.bak
+*.backup
