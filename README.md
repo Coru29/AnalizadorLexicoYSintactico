@@ -34,7 +34,11 @@ make compile
 
 ### Ejecutar con archivo de ejemplo:
 ```bash
-make run
+make run              # Ejecuta ejemplo básico (ensalada)
+make run-brownies     # Ejecuta ejemplo de brownies completo
+make run-guiso        # Ejecuta ejemplo de guiso con estrellas
+make run-ensalada     # Ejecuta ejemplo de ensalada básica
+make test-all         # Ejecuta TODOS los ejemplos
 ```
 
 ### Limpiar archivos generados:
@@ -44,7 +48,9 @@ make clean
 
 ### Ejecutar manualmente:
 ```bash
-java -cp build:lib/java-cup-11b-runtime.jar Main examples/receta_simple.txt
+java -cp build:lib/java-cup-11b-runtime.jar Main examples/brownies_completo.txt
+java -cp build:lib/java-cup-11b-runtime.jar Main examples/guiso_completo.txt
+java -cp build:lib/java-cup-11b-runtime.jar Main examples/ensalada_basica.txt
 ```
 
 ## Formato de Receta Soportado
@@ -174,22 +180,6 @@ java -cp build:lib/java-cup-11b-runtime.jar Main examples/ensalada_basica.txt
 - ⚠️ Información adicional funciona pero puede causar errores al final
 - ⚠️ Pasos limitados a pocas palabras por paso
 
-## Control de Versiones
-
-✅ **Repositorio Git configurado**
-- Commit inicial con todo el proyecto funcional
-- `.gitignore` configurado para ignorar archivos generados (`build/`, `*.class`, etc.)
-- Historial de cambios disponible
-
-### Comandos básicos:
-```bash
-git status          # Ver estado actual
-git log --oneline   # Ver historial de commits
-git add .           # Agregar cambios
-git commit -m "..."  # Hacer commit
-```
-
-📖 **Ver `GIT_USAGE.md` para guía completa de uso de Git**
 
 ## Archivos Generados
 

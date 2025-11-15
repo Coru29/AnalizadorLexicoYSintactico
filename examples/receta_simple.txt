@@ -9,3 +9,7 @@ PASOS:
 Tiempo: 45 min
 Porciones: 8
 Calorias: 150 Kcal
+Categorias: [Postre]
+Dificultad: FACIL
+Obs: "Receta básica y simple"
+Recetas relacionadas: "Cookies"

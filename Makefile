@@ -18,7 +18,7 @@ CUP_RUNTIME_JAR = $(LIB_DIR)/java-cup-11b-runtime.jar
 # Classpath
 CLASSPATH = $(BUILD_DIR):$(CUP_RUNTIME_JAR)
 
-.PHONY: all clean lexer parser compile run
+.PHONY: all clean lexer parser compile run run-brownies run-guiso run-ensalada test-all
 
 all: compile
 
@@ -40,7 +40,31 @@ compile: lexer parser
 # Ejecutar con archivo de ejemplo
 run: compile
 	@echo "Ejecutando con archivo de ejemplo..."
-	java -cp $(CLASSPATH) Main examples/receta_simple.txt
+	java -cp $(CLASSPATH) Main examples/ensalada_basica.txt
+
+# Ejecutar ejemplos específicos
+run-brownies: compile
+	@echo "Ejecutando ejemplo de brownies..."
+	java -cp $(CLASSPATH) Main examples/brownies_completo.txt
+
+run-guiso: compile
+	@echo "Ejecutando ejemplo de guiso..."
+	java -cp $(CLASSPATH) Main examples/guiso_completo.txt
+
+run-ensalada: compile
+	@echo "Ejecutando ejemplo de ensalada..."
+	java -cp $(CLASSPATH) Main examples/ensalada_basica.txt
+
+# Ejecutar todos los ejemplos
+test-all: compile
+	@echo "=== Probando todos los ejemplos ==="
+	@echo "--- Brownies ---"
+	@java -cp $(CLASSPATH) Main examples/brownies_completo.txt
+	@echo "--- Guiso ---"
+	@java -cp $(CLASSPATH) Main examples/guiso_completo.txt
+	@echo "--- Ensalada ---"
+	@java -cp $(CLASSPATH) Main examples/ensalada_basica.txt
+	@echo "=== Todos los ejemplos funcionan correctamente ==="
 
 # Limpiar archivos generados
 clean:
