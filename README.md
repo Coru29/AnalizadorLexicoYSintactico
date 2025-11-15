@@ -15,7 +15,6 @@ recetario#3/
 ├── examples/           # Archivos de ejemplo
 ├── docs/               # Documentación
 ├── Makefile           # Automatización
-├── GIT_USAGE.md       # Guía de control de versiones
 └── .gitignore         # Archivos ignorados por Git
 ```
 
@@ -38,6 +37,8 @@ make run              # Ejecuta ejemplo básico (ensalada)
 make run-brownies     # Ejecuta ejemplo de brownies completo
 make run-guiso        # Ejecuta ejemplo de guiso con estrellas
 make run-ensalada     # Ejecuta ejemplo de ensalada básica
+make run-decimales    # Ejecuta ejemplo con decimales y fracciones
+make run-tiempos      # Ejecuta ejemplos con diferentes formatos de tiempo
 make test-all         # Ejecuta TODOS los ejemplos
 ```
 
@@ -55,7 +56,7 @@ java -cp build:lib/java-cup-11b-runtime.jar Main examples/ensalada_basica.txt
 
 ## Formato de Receta Soportado
 
-El compilador actualmente reconoce el siguiente formato básico:
+El compilador reconoce el siguiente formato completo:
 
 ```
 RECETA "Nombre de la Receta"
@@ -65,12 +66,17 @@ ingrediente cantidad unidad
 PASOS:
 1. Paso
 2. Paso
-Tiempo: cantidad min
+Tiempo: cantidad formato_tiempo
 Porciones: cantidad
 Calorias: cantidad Kcal
+Categorias: [categoria1, categoria2]
+Dificultad: nivel_o_estrellas
+Obs: "Observaciones de la receta"
+Recetas relacionadas: "Receta1", "Receta2"
+Etiqueta=Valor
 ```
 
-### Ejemplo:
+### Ejemplo Completo:
 ```
 RECETA "Brownies Simples"
 INGREDIENTES:
@@ -83,6 +89,10 @@ PASOS:
 Tiempo: 45 min
 Porciones: 8
 Calorias: 150 Kcal
+Categorias: [Postre]
+Dificultad: FACIL
+Obs: "Receta básica y simple"
+Recetas relacionadas: "Cookies"
 ```
 
 ## Ejemplos Disponibles
@@ -143,11 +153,12 @@ java -cp build:lib/java-cup-11b-runtime.jar Main examples/ensalada_basica.txt
 ### Palabras Clave:
 - `RECETA`, `INGREDIENTES`, `PASOS`
 - `Tiempo`, `Porciones`, `Calorias`
+- `Categorias`, `Dificultad`, `Obs`, `Recetas relacionadas`
 
 ### Unidades de Medida:
-- `g` (gramos), `kg` (kilos)
-- `l` (litros), `ml` (mililitros)
-- `u` (unidades), `min` (minutos), `Kcal` (kilocalorías)
+- **Ingredientes:** `g` (gramos), `kg` (kilos), `l` (litros), `ml` (mililitros), `u` (unidades)
+- **Tiempo:** `min` (minutos), `m` (minutos corto), `h` (horas), `'` (apostrofe)
+- **Calorías:** `Kcal` (kilocalorías)
 
 ### Tipos de Datos:
 - Números enteros
@@ -158,27 +169,54 @@ java -cp build:lib/java-cup-11b-runtime.jar Main examples/ensalada_basica.txt
 
 ## Estado Actual
 
-✅ **Implementado (Cumple requisitos mínimos):**
+✅ **PROYECTO COMPLETO - Cumple TODOS los requisitos mínimos:**
+
+### **Requisitos Básicos Implementados:**
 - ✅ Reconocer el formato básico de un recetario completo
 - ✅ Identificar y validar todas las partes de una receta
 - ✅ Identificar y validar ingredientes, cantidades y unidades de medida
 - ✅ Procesar la lista de pasos numerados
+- ✅ Soporte para múltiples recetas en un archivo
 - ✅ Permitir información adicional flexible (etiqueta=valor)
 - ✅ Reportar errores de formato cuando sea necesario
-- ✅ Soporte para todos los campos obligatorios:
-  - Nombre de receta
-  - Ingredientes con cantidades y unidades
-  - Pasos de preparación
-  - Tiempo, Porciones, Calorías
-  - Categorías (desayuno, merienda, principal, entrada, colación, postre)
-  - Nivel de dificultad (texto o estrellas)
-  - Observaciones (texto libre)
-  - Recetas relacionadas
 
-🔄 **Limitaciones actuales:**
-- ⚠️ Soporte para múltiples recetas en un archivo (problema con parsing)
-- ⚠️ Información adicional funciona pero puede causar errores al final
-- ⚠️ Pasos limitados a pocas palabras por paso
+### **Campos Completos Soportados:**
+- ✅ **Nombre de receta** (cadenas entre comillas)
+- ✅ **Ingredientes** con cantidades (enteros, decimales, fracciones) y unidades
+- ✅ **Pasos de preparación** numerados (hasta 3 palabras por paso)
+- ✅ **Tiempo** con múltiples formatos (75 min, 1h 15m, 1.25h, 5/4h, etc.)
+- ✅ **Porciones** (números enteros)
+- ✅ **Calorías** (números + Kcal)
+- ✅ **Categorías** múltiples entre corchetes [Postre, Merienda]
+- ✅ **Dificultad** flexible (texto: FACIL/MEDIA/ALTA o estrellas: *//**//***)
+- ✅ **Observaciones** (texto libre entre comillas)
+- ✅ **Recetas relacionadas** (lista de recetas entre comillas)
+- ✅ **Información adicional** (formato clave=valor)
+
+### **Extensiones Implementadas:**
+- ✅ **Formatos de tiempo flexibles** (Extensión D): 8 formatos diferentes
+- ✅ **Tokenización detallada** con información completa de cada elemento
+- ✅ **Múltiples ejemplos** de prueba para cada funcionalidad
+
+### **Características Técnicas:**
+- **38 tokens terminales** reconocidos
+- **26 símbolos no terminales** en la gramática
+- **53 reglas de producción** implementadas
+- **Análisis LALR(1)** sin conflictos
+- **Manejo de errores** léxicos y sintácticos
+- **Separación clara** entre análisis léxico (JFlex) y sintáctico (CUP)
+
+### **Formatos de Tiempo Soportados:**
+```
+75 min      # Formato básico con minutos
+75 m        # Minutos en formato corto
+1 h         # Solo horas
+1.25 h      # Horas con decimales
+5/4 h       # Horas con fracciones
+1 h 15 m    # Horas y minutos combinados
+1 h 1/4     # Horas y fracciones combinadas
+1 15'       # Formato con apostrofe
+```
 
 
 ## Archivos Generados
