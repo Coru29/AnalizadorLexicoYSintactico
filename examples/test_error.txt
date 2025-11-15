@@ -1,0 +1,12 @@
+RECETA "Test Error"
+INGREDIENTES:
+chorizo500 g
+PASOS:
+1. Test
+Tiempo: 30 min
+Porciones: 4
+Calorias: 100 Kcal
+Categorias: [Principal]
+Dificultad: FACIL
+Obs: "Test"
+Recetas relacionadas: "Test"

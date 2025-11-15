@@ -135,20 +135,41 @@ paso ::= NUMERO:num PUNTO PALABRA:accion NUEVA_LINEA
 info_adicional ::= tiempo porciones calorias
                  ;
 
-tiempo ::= TIEMPO DOS_PUNTOS NUMERO MINUTOS NUEVA_LINEA
-         {: System.out.println("Tiempo encontrado"); :}
+tiempo ::= TIEMPO DOS_PUNTOS NUMERO:mins MINUTOS NUEVA_LINEA
+         {: System.out.println("⏰ TIEMPO TOKENIZADO:");
+            System.out.println("   └─ Palabra clave: 'Tiempo' (Token: TIEMPO)");
+            System.out.println("   └─ Separador: ':' (Token: DOS_PUNTOS)");
+            System.out.println("   └─ Cantidad: '" + mins + "' (Token: NUMERO)");
+            System.out.println("   └─ Unidad: 'min' (Token: MINUTOS)");
+            System.out.println("   └─ Resultado: Tiempo de preparación: " + mins + " minutos");
+         :}
          ;
 
-porciones ::= PORCIONES DOS_PUNTOS NUMERO NUEVA_LINEA
-            {: System.out.println("Porciones encontradas"); :}
+porciones ::= PORCIONES DOS_PUNTOS NUMERO:cant NUEVA_LINEA
+            {: System.out.println("🍽️ PORCIONES TOKENIZADO:");
+               System.out.println("   └─ Palabra clave: 'Porciones' (Token: PORCIONES)");
+               System.out.println("   └─ Separador: ':' (Token: DOS_PUNTOS)");
+               System.out.println("   └─ Cantidad: '" + cant + "' (Token: NUMERO)");
+               System.out.println("   └─ Resultado: Rinde " + cant + " porciones");
+            :}
             ;
 
-calorias ::= CALORIAS DOS_PUNTOS NUMERO KCAL NUEVA_LINEA
-           {: System.out.println("Calorías encontradas"); :}
+calorias ::= CALORIAS DOS_PUNTOS NUMERO:kcal KCAL NUEVA_LINEA
+           {: System.out.println("🔥 CALORÍAS TOKENIZADO:");
+              System.out.println("   └─ Palabra clave: 'Calorias' (Token: CALORIAS)");
+              System.out.println("   └─ Separador: ':' (Token: DOS_PUNTOS)");
+              System.out.println("   └─ Cantidad: '" + kcal + "' (Token: NUMERO)");
+              System.out.println("   └─ Unidad: 'Kcal' (Token: KCAL)");
+              System.out.println("   └─ Resultado: " + kcal + " kilocalorías por porción");
+           :}
            ;
 
 categorias ::= CATEGORIAS DOS_PUNTOS CORCHETE_IZQ lista_categorias CORCHETE_DER NUEVA_LINEA
-             {: System.out.println("Categorías encontradas"); :}
+             {: System.out.println("🏷️ CATEGORÍAS TOKENIZADO:");
+                System.out.println("   └─ Palabra clave: 'Categorias' (Token: CATEGORIAS)");
+                System.out.println("   └─ Formato: '[categoria1, categoria2, ...]' (Tokens: CORCHETE + PALABRAS + CORCHETE)");
+                System.out.println("   └─ Resultado: Categorías de la receta identificadas");
+             :}
              ;
 
 lista_categorias ::= categoria
@@ -158,14 +179,34 @@ lista_categorias ::= categoria
 categoria ::= PALABRA
             ;
 
-dificultad ::= DIFICULTAD DOS_PUNTOS PALABRA NUEVA_LINEA
-             {: System.out.println("Dificultad encontrada"); :}
+dificultad ::= DIFICULTAD DOS_PUNTOS PALABRA:nivel NUEVA_LINEA
+             {: System.out.println("⭐ DIFICULTAD TOKENIZADO:");
+                System.out.println("   └─ Palabra clave: 'Dificultad' (Token: DIFICULTAD)");
+                System.out.println("   └─ Tipo: Texto (Token: PALABRA)");
+                System.out.println("   └─ Nivel: '" + nivel + "'");
+                System.out.println("   └─ Resultado: Dificultad por texto: " + nivel);
+             :}
              | DIFICULTAD DOS_PUNTOS ASTERISCO NUEVA_LINEA
-             {: System.out.println("Dificultad con estrellas encontrada"); :}
+             {: System.out.println("⭐ DIFICULTAD TOKENIZADO:");
+                System.out.println("   └─ Palabra clave: 'Dificultad' (Token: DIFICULTAD)");
+                System.out.println("   └─ Tipo: Estrellas (Token: ASTERISCO)");
+                System.out.println("   └─ Nivel: '*' (1 estrella)");
+                System.out.println("   └─ Resultado: Dificultad baja (1/3)");
+             :}
              | DIFICULTAD DOS_PUNTOS ASTERISCO ASTERISCO NUEVA_LINEA
-             {: System.out.println("Dificultad con estrellas encontrada"); :}
+             {: System.out.println("⭐ DIFICULTAD TOKENIZADO:");
+                System.out.println("   └─ Palabra clave: 'Dificultad' (Token: DIFICULTAD)");
+                System.out.println("   └─ Tipo: Estrellas (Tokens: ASTERISCO + ASTERISCO)");
+                System.out.println("   └─ Nivel: '**' (2 estrellas)");
+                System.out.println("   └─ Resultado: Dificultad media (2/3)");
+             :}
              | DIFICULTAD DOS_PUNTOS ASTERISCO ASTERISCO ASTERISCO NUEVA_LINEA
-             {: System.out.println("Dificultad con estrellas encontrada"); :}
+             {: System.out.println("⭐ DIFICULTAD TOKENIZADO:");
+                System.out.println("   └─ Palabra clave: 'Dificultad' (Token: DIFICULTAD)");
+                System.out.println("   └─ Tipo: Estrellas (Tokens: ASTERISCO + ASTERISCO + ASTERISCO)");
+                System.out.println("   └─ Nivel: '***' (3 estrellas)");
+                System.out.println("   └─ Resultado: Dificultad alta (3/3)");
+             :}
              ;
 
 origen ::= ORIGEN DOS_PUNTOS PALABRA NUEVA_LINEA
@@ -178,12 +219,20 @@ tipo ::= TIPO DOS_PUNTOS PALABRA NUEVA_LINEA
        | /* vacío - campo opcional */
        ;
 
-observaciones ::= OBS DOS_PUNTOS CADENA NUEVA_LINEA
-                {: System.out.println("Observaciones encontradas"); :}
+observaciones ::= OBS DOS_PUNTOS CADENA:obs NUEVA_LINEA
+                {: System.out.println("📝 OBSERVACIONES TOKENIZADO:");
+                   System.out.println("   └─ Palabra clave: 'Obs' (Token: OBS)");
+                   System.out.println("   └─ Contenido: Texto entre comillas (Token: CADENA)");
+                   System.out.println("   └─ Longitud: " + obs.toString().length() + " caracteres");
+                :}
                 ;
 
 recetas_relacionadas ::= RECETAS RELACIONADAS DOS_PUNTOS lista_recetas NUEVA_LINEA
-                       {: System.out.println("Recetas relacionadas encontradas"); :}
+                       {: System.out.println("🔗 RECETAS RELACIONADAS TOKENIZADO:");
+                          System.out.println("   └─ Palabras clave: 'Recetas relacionadas' (Tokens: RECETAS + RELACIONADAS)");
+                          System.out.println("   └─ Formato: Lista de recetas entre comillas (Tokens: CADENA, CADENA, ...)");
+                          System.out.println("   └─ Resultado: Referencias a otras recetas identificadas");
+                       :}
                        ;
 
 lista_recetas ::= CADENA

@@ -1,0 +1,12 @@
+RECETA "Debug Transición"
+INGREDIENTES:
+sal 1 u
+PASOS:
+1. Mezclar
+Tiempo: 30 min
+Porciones: 4
+Calorias: 100 Kcal
+Categorias: [Principal]
+Dificultad: FACIL
+Obs: "Test transición"
+Recetas relacionadas: "Test"

@@ -1,0 +1,13 @@
+RECETA "Debug Test"
+INGREDIENTES:
+chorizo500 g
+harina 200 g
+PASOS:
+1. Test
+Tiempo: 30 min
+Porciones: 4
+Calorias: 100 Kcal
+Categorias: [Principal]
+Dificultad: FACIL
+Obs: "Test"
+Recetas relacionadas: "Test"
