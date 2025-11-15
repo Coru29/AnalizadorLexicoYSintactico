@@ -1,0 +1,12 @@
+RECETA "Test Tiempos Variados"
+INGREDIENTES:
+harina 200 g
+PASOS:
+1. Mezclar
+Tiempo: 1 h 15 m
+Porciones: 4
+Calorias: 100 Kcal
+Categorias: [Principal]
+Dificultad: FACIL
+Obs: "Test con tiempo 1h 15m"
+Recetas relacionadas: "Test"

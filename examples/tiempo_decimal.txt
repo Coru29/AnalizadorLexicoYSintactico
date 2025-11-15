@@ -1,0 +1,12 @@
+RECETA "Test Tiempo Decimal"
+INGREDIENTES:
+azucar 100 g
+PASOS:
+1. Batir
+Tiempo: 1.25 h
+Porciones: 2
+Calorias: 200 Kcal
+Categorias: [Postre]
+Dificultad: MEDIA
+Obs: "Test con tiempo 1.25h"
+Recetas relacionadas: "Test"

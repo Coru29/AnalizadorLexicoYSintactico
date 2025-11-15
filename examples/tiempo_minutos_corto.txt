@@ -1,0 +1,12 @@
+RECETA "Test Tiempo Minutos Corto"
+INGREDIENTES:
+agua 500 ml
+PASOS:
+1. Hervir
+Tiempo: 75 m
+Porciones: 1
+Calorias: 0 Kcal
+Categorias: [Colacion]
+Dificultad: FACIL
+Obs: "Test con tiempo 75m"
+Recetas relacionadas: "Test"

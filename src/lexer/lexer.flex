@@ -55,6 +55,12 @@ NUEVA_LINEA = \n
 "min"              { return symbol(sym.MINUTOS); }
 "Kcal"             { return symbol(sym.KCAL); }
 
+/* Unidades de tiempo adicionales */
+"h"                { return symbol(sym.HORAS); }
+"m"                { return symbol(sym.MINUTOS_CORTO); }
+"'"                { return symbol(sym.APOSTROFE); }
+"min"              { return symbol(sym.MINUTOS); }
+
 /* Símbolos */
 ":"                { return symbol(sym.DOS_PUNTOS); }
 "."                { return symbol(sym.PUNTO); }

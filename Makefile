@@ -18,7 +18,7 @@ CUP_RUNTIME_JAR = $(LIB_DIR)/java-cup-11b-runtime.jar
 # Classpath
 CLASSPATH = $(BUILD_DIR):$(CUP_RUNTIME_JAR)
 
-.PHONY: all clean lexer parser compile run run-brownies run-guiso run-ensalada run-decimales test-all
+.PHONY: all clean lexer parser compile run run-brownies run-guiso run-ensalada run-decimales run-tiempos test-all
 
 all: compile
 
@@ -58,6 +58,17 @@ run-ensalada: compile
 run-decimales: compile
 	@echo "Ejecutando ejemplo con decimales y fracciones..."
 	java -cp $(CLASSPATH) Main examples/receta_con_decimales.txt
+
+run-tiempos: compile
+	@echo "Ejecutando ejemplos con diferentes formatos de tiempo..."
+	@echo "--- Tiempo 1h 15m ---"
+	@java -cp $(CLASSPATH) Main examples/tiempos_variados.txt
+	@echo "--- Tiempo 1.25h ---"
+	@java -cp $(CLASSPATH) Main examples/tiempo_decimal.txt
+	@echo "--- Tiempo 5/4h ---"
+	@java -cp $(CLASSPATH) Main examples/tiempo_fraccion.txt
+	@echo "--- Tiempo 75m ---"
+	@java -cp $(CLASSPATH) Main examples/tiempo_minutos_corto.txt
 
 # Ejecutar todos los ejemplos
 test-all: compile

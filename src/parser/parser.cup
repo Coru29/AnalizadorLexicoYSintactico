@@ -5,6 +5,7 @@ import java_cup.runtime.*;
 terminal RECETA, INGREDIENTES, PASOS, TIEMPO, PORCIONES, CALORIAS;
 terminal CATEGORIAS, DIFICULTAD, ORIGEN, TIPO, OBS, RECETAS, RELACIONADAS;
 terminal GRAMOS, KILOS, LITROS, MILILITROS, UNIDADES, MINUTOS, KCAL;
+terminal HORAS, MINUTOS_CORTO, APOSTROFE;
 terminal DOS_PUNTOS, PUNTO, NUEVA_LINEA, IGUAL, COMA, CORCHETE_IZQ, CORCHETE_DER, ASTERISCO;
 terminal NUMERO;
 terminal DECIMAL;
@@ -24,6 +25,7 @@ non terminal lista_pasos;
 non terminal paso;
 non terminal info_adicional;
 non terminal tiempo;
+non terminal formato_tiempo;
 non terminal porciones;
 non terminal calorias;
 non terminal categorias;
@@ -135,15 +137,27 @@ paso ::= NUMERO:num PUNTO PALABRA:accion NUEVA_LINEA
 info_adicional ::= tiempo porciones calorias
                  ;
 
-tiempo ::= TIEMPO DOS_PUNTOS NUMERO:mins MINUTOS NUEVA_LINEA
-         {: System.out.println("⏰ TIEMPO TOKENIZADO:");
-            System.out.println("   └─ Palabra clave: 'Tiempo' (Token: TIEMPO)");
-            System.out.println("   └─ Separador: ':' (Token: DOS_PUNTOS)");
-            System.out.println("   └─ Cantidad: '" + mins + "' (Token: NUMERO)");
-            System.out.println("   └─ Unidad: 'min' (Token: MINUTOS)");
-            System.out.println("   └─ Resultado: Tiempo de preparación: " + mins + " minutos");
-         :}
+tiempo ::= TIEMPO DOS_PUNTOS formato_tiempo NUEVA_LINEA
+         {: System.out.println("⏰ TIEMPO TOKENIZADO (formato flexible)"); :}
          ;
+
+formato_tiempo ::= NUMERO MINUTOS
+                 {: System.out.println("   └─ Formato: X min (ej: 75 min)"); :}
+                 | NUMERO MINUTOS_CORTO
+                 {: System.out.println("   └─ Formato: X m (ej: 75 m)"); :}
+                 | NUMERO HORAS
+                 {: System.out.println("   └─ Formato: X h (ej: 1 h)"); :}
+                 | DECIMAL HORAS
+                 {: System.out.println("   └─ Formato: X,Y h (ej: 1,25 h)"); :}
+                 | FRACCION HORAS
+                 {: System.out.println("   └─ Formato: X/Y h (ej: 5/4 h)"); :}
+                 | NUMERO HORAS NUMERO MINUTOS_CORTO
+                 {: System.out.println("   └─ Formato: X h Y m (ej: 1 h 15 m)"); :}
+                 | NUMERO HORAS FRACCION
+                 {: System.out.println("   └─ Formato: X h Y/Z (ej: 1 h 1/4)"); :}
+                 | NUMERO NUMERO APOSTROFE
+                 {: System.out.println("   └─ Formato: X Y' (ej: 1 15')"); :}
+                 ;
 
 porciones ::= PORCIONES DOS_PUNTOS NUMERO:cant NUEVA_LINEA
             {: System.out.println("🍽️ PORCIONES TOKENIZADO:");

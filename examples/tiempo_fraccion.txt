@@ -1,0 +1,12 @@
+RECETA "Test Tiempo Fracción"
+INGREDIENTES:
+sal 1 u
+PASOS:
+1. Sazonar
+Tiempo: 5/4 h
+Porciones: 1
+Calorias: 50 Kcal
+Categorias: [Colacion]
+Dificultad: *
+Obs: "Test con tiempo 5/4h"
+Recetas relacionadas: "Test"
