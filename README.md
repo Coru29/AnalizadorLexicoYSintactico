@@ -14,7 +14,9 @@ recetario#3/
 ├── build/              # Archivos compilados
 ├── examples/           # Archivos de ejemplo
 ├── docs/               # Documentación
-└── Makefile           # Automatización de compilación
+├── Makefile           # Automatización
+├── GIT_USAGE.md       # Guía de control de versiones
+└── .gitignore         # Archivos ignorados por Git
 ```
 
 ## Requisitos
@@ -171,6 +173,23 @@ java -cp build:lib/java-cup-11b-runtime.jar Main examples/ensalada_basica.txt
 - ⚠️ Soporte para múltiples recetas en un archivo (problema con parsing)
 - ⚠️ Información adicional funciona pero puede causar errores al final
 - ⚠️ Pasos limitados a pocas palabras por paso
+
+## Control de Versiones
+
+✅ **Repositorio Git configurado**
+- Commit inicial con todo el proyecto funcional
+- `.gitignore` configurado para ignorar archivos generados (`build/`, `*.class`, etc.)
+- Historial de cambios disponible
+
+### Comandos básicos:
+```bash
+git status          # Ver estado actual
+git log --oneline   # Ver historial de commits
+git add .           # Agregar cambios
+git commit -m "..."  # Hacer commit
+```
+
+📖 **Ver `GIT_USAGE.md` para guía completa de uso de Git**
 
 ## Archivos Generados
 
