@@ -146,21 +146,21 @@ tiempo ::= TIEMPO DOS_PUNTOS formato_tiempo NUEVA_LINEA
          ;
 
 formato_tiempo ::= NUMERO MINUTOS
-                 {: System.out.println("   └─ Formato: X min (ej: 75 min)"); :}
+                 {: System.out.println("   └─ Formato: X min "); :}
                  | NUMERO MINUTOS_CORTO
-                 {: System.out.println("   └─ Formato: X m (ej: 75 m)"); :}
+                 {: System.out.println("   └─ Formato: X m "); :}
                  | NUMERO HORAS
-                 {: System.out.println("   └─ Formato: X h (ej: 1 h)"); :}
+                 {: System.out.println("   └─ Formato: X h "); :}
                  | DECIMAL HORAS
-                 {: System.out.println("   └─ Formato: X,Y h (ej: 1,25 h)"); :}
+                 {: System.out.println("   └─ Formato: X,Y h "); :}
                  | FRACCION HORAS
-                 {: System.out.println("   └─ Formato: X/Y h (ej: 5/4 h)"); :}
+                 {: System.out.println("   └─ Formato: X/Y h "); :}
                  | NUMERO HORAS NUMERO MINUTOS_CORTO
-                 {: System.out.println("   └─ Formato: X h Y m (ej: 1 h 15 m)"); :}
+                 {: System.out.println("   └─ Formato: X h Y m "); :}
                  | NUMERO HORAS FRACCION
-                 {: System.out.println("   └─ Formato: X h Y/Z (ej: 1 h 1/4)"); :}
+                 {: System.out.println("   └─ Formato: X h Y/Z "); :}
                  | NUMERO NUMERO APOSTROFE
-                 {: System.out.println("   └─ Formato: X Y' (ej: 1 15')"); :}
+                 {: System.out.println("   └─ Formato: X Y'"); :}
                  ;
 
 porciones ::= PORCIONES DOS_PUNTOS NUMERO:cant NUEVA_LINEA
