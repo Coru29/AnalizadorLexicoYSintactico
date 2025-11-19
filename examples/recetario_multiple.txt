@@ -30,5 +30,20 @@ Categorias: [Entrada, Principal]
 Dificultad: *
 Obs: "Muy saludable"
 Recetas relacionadas: "Ensalada mixta"
-Vegetariano=Si
-Calorias=Bajo
+
+RECETA "Ensalada Verde"
+INGREDIENTES:
+lechuga 100 g
+tomate 200 g
+aceite 50 ml
+PASOS:
+1. Lavar
+2. Cortar
+3. Mezclar
+Tiempo: 15 min
+Porciones: 4
+Calorias: 80 Kcal
+Categorias: [Entrada, Principal]
+Dificultad: *
+Obs: "Muy saludable"
+Recetas relacionadas: "Ensalada mixta"

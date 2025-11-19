@@ -18,7 +18,7 @@ CUP_RUNTIME_JAR = $(LIB_DIR)/java-cup-11b-runtime.jar
 # Classpath
 CLASSPATH = $(BUILD_DIR):$(CUP_RUNTIME_JAR)
 
-.PHONY: all clean lexer parser compile run run-brownies run-guiso run-ensalada run-decimales run-tiempos test-all
+.PHONY: all clean lexer parser compile run run-brownies run-guiso run-ensalada run-decimales run-tiempos run-mira-lo-que-hice-paaa test-all
 
 all: compile
 
@@ -69,6 +69,10 @@ run-tiempos: compile
 	@java -cp $(CLASSPATH) Main examples/tiempo_fraccion.txt
 	@echo "--- Tiempo 75m ---"
 	@java -cp $(CLASSPATH) Main examples/tiempo_minutos_corto.txt
+
+run-mira-lo-que-hice-paaa: compile
+	@echo "Ejecutando ejemplo de polenta..."
+	java -cp $(CLASSPATH) Main examples/polenta_completa.txt
 
 # Ejecutar todos los ejemplos
 test-all: compile

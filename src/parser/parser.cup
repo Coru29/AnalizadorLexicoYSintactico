@@ -57,6 +57,17 @@ receta ::= nombre_receta NUEVA_LINEA
            recetas_relacionadas
            info_extra
            {: System.out.println("Receta procesada correctamente"); :}
+         | nombre_receta NUEVA_LINEA
+           seccion_ingredientes
+           seccion_pasos
+           info_adicional
+           categorias
+           dificultad
+           observaciones
+           recetas_relacionadas
+           info_extra
+           NUEVA_LINEA
+           {: System.out.println("Receta procesada correctamente"); :}
          ;
 
 nombre_receta ::= RECETA CADENA:nombre
@@ -254,6 +265,4 @@ lista_recetas ::= CADENA
                 ;
 
 info_extra ::= /* vacío - sin información adicional */
-             | info_extra PALABRA IGUAL PALABRA NUEVA_LINEA
-             {: System.out.println("Información adicional encontrada"); :}
              ;

@@ -1,0 +1,23 @@
+RECETA "Polentaaa"
+INGREDIENTES:
+polenta 250 g
+agua 1 l
+leche 500 ml
+manteca 50 g
+queso 100 g
+PASOS:
+1. Hervir
+2. Agregar
+3. Cocinar
+4. Incorporar
+5. Mezclar
+6. Servir
+Tiempo: 30 min
+Porciones: 4
+Calorias: 280 Kcal
+Categorias: [Principal]
+Dificultad: FACIL
+Obs: "Mira lo que hice paaaa, polentaaaaa"
+Recetas relacionadas: "Polenta con hongos", "Gnocchi de polenta"
+Carbohidratos=Alto
+Costo=Bajo
