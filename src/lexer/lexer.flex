@@ -64,7 +64,6 @@ NUEVA_LINEA = \n
 /* Símbolos */
 ":"                { return symbol(sym.DOS_PUNTOS); }
 "."                { return symbol(sym.PUNTO); }
-"="                { return symbol(sym.IGUAL); }
 ","                { return symbol(sym.COMA); }
 "["                { return symbol(sym.CORCHETE_IZQ); }
 "]"                { return symbol(sym.CORCHETE_DER); }
