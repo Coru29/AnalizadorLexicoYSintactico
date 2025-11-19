@@ -23,6 +23,7 @@ non terminal unidad;
 non terminal seccion_pasos;
 non terminal lista_pasos;
 non terminal paso;
+non terminal lista_palabras;
 non terminal info_adicional;
 non terminal tiempo;
 non terminal formato_tiempo;
@@ -122,28 +123,20 @@ lista_pasos ::= paso
               | lista_pasos paso
               ;
 
-paso ::= NUMERO:num PUNTO PALABRA:accion NUEVA_LINEA
+paso ::= NUMERO:num PUNTO lista_palabras:acciones NUEVA_LINEA
        {: System.out.println("PASO TOKENIZADO:");
           System.out.println("   └─ Número: '" + num + "' (Token: NUMERO)");
           System.out.println("   └─ Separador: '.' (Token: PUNTO)");
-          System.out.println("   └─ Acción: '" + accion + "' (Token: PALABRA)");
-          System.out.println("   └─ Resultado: Paso " + num + ": " + accion);
-       :}
-       | NUMERO:num PUNTO PALABRA:accion1 PALABRA:accion2 NUEVA_LINEA
-       {: System.out.println("PASO TOKENIZADO:");
-          System.out.println("   └─ Número: '" + num + "' (Token: NUMERO)");
-          System.out.println("   └─ Separador: '.' (Token: PUNTO)");
-          System.out.println("   └─ Acción: '" + accion1 + " " + accion2 + "' (Tokens: PALABRA + PALABRA)");
-          System.out.println("   └─ Resultado: Paso " + num + ": " + accion1 + " " + accion2);
-       :}
-       | NUMERO:num PUNTO PALABRA:accion1 PALABRA:accion2 PALABRA:accion3 NUEVA_LINEA
-       {: System.out.println("PASO TOKENIZADO:");
-          System.out.println("   └─ Número: '" + num + "' (Token: NUMERO)");
-          System.out.println("   └─ Separador: '.' (Token: PUNTO)");
-          System.out.println("   └─ Acción: '" + accion1 + " " + accion2 + " " + accion3 + "' (Tokens: PALABRA + PALABRA + PALABRA)");
-          System.out.println("   └─ Resultado: Paso " + num + ": " + accion1 + " " + accion2 + " " + accion3);
+          System.out.println("   └─ Acción: '" + acciones + "' (Múltiples tokens PALABRA)");
+          System.out.println("   └─ Resultado: Paso " + num + ": " + acciones);
        :}
      ;
+
+lista_palabras ::= PALABRA:p
+                 {: RESULT = p; :}
+                 | lista_palabras:lista PALABRA:p
+                 {: RESULT = lista + " " + p; :}
+                 ;
 
 info_adicional ::= tiempo porciones calorias
                  ;
